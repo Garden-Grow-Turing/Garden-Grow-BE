@@ -7,9 +7,23 @@ module Types
     # Add root-level fields here.
     # They will be entry points for queries on your schema.
 
+    field :user_details, Types::UserType, null: false do
+      description 'return details about a specific user'
+      argument :user_id, String, required: true
+    end
+    
     field :vegetables_by_zipcode, Types::ZipcodeResultType, null: false do
       description 'Returns a zone and basic vegetable details'
       argument :zipcode, String, required: true
+    end
+
+    field :vegetable_details, Types::VegetableType, null: false do
+      description 'return details about a specific vegetable'
+      argument :vegetable_id, String, required: true
+    end
+
+    def user_details(args)
+      User.find(args[:user_id])
     end
 
     def vegetables_by_zipcode(args)
@@ -19,6 +33,10 @@ module Types
         grow_zone: zone,
         vegetables: Vegetable.all
       }
+    end
+
+    def vegetable_details(args)
+      Vegetable.find(args[:vegetable_id])
     end
 
     private
