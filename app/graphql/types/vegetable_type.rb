@@ -17,7 +17,7 @@ module Types
     end
     field :created_at, GraphQL::Types::ISO8601DateTime, null: false
     field :updated_at, GraphQL::Types::ISO8601DateTime, null: false
-    
+
     def zone_details(zone:)
       object.vegetable_zones.find_by(zone: zone)
     end

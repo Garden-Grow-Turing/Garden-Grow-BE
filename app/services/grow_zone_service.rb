@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class GrowZoneService
   def self.get_zone(zipcode)
     response = conn.get("zipcodes/#{zipcode}")
@@ -7,7 +9,7 @@ class GrowZoneService
   def self.conn
     Faraday.new(
       url: 'https://plant-hardiness-zone.p.rapidapi.com',
-      headers: { 'X-RapidAPI-Key': ENV['rapidAPI'] }
+      headers: { 'X-RapidAPI-Key': ENV.fetch('rapidAPI', nil) }
     )
   end
 

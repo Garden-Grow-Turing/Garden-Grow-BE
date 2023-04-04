@@ -1,16 +1,18 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe 'vegetable_details', type: :request do
   it 'returns details of a specific user', :vcr do
-    user1 = create(:user) 
+    user1 = create(:user)
     user2 = create(:user)
-    vegetable1 = create(:vegetable) 
+    vegetable1 = create(:vegetable)
     veg_user = create(:vegetable_user, user: user1, vegetable: vegetable1)
 
     user = query_user_details(user1.id, user1.grow_zone)
 
     expect(response).to be_successful
-    
+
     expect(user[:data][:userDetails][:name]).to be_a String
     expect(user[:data][:userDetails][:name]).to eq(user1.name)
     expect(user[:data][:userDetails][:name]).to_not eq(user2.name)
@@ -26,7 +28,7 @@ RSpec.describe 'vegetable_details', type: :request do
 
   private
 
-  def query_user_details(id, zone)
+  def query_user_details(id, _zone)
     gql <<-GQL
     query{
       userDetails(

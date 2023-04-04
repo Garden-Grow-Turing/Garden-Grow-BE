@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 module Mutations
   class UpdateVegetableUser < BaseMutation
     argument :vegetable_user_id, String, required: true
     argument :notes, String, required: true
-    
+
     type Types::VegetableUserType
 
     def resolve(vegetable_user_id: nil, notes: nil)

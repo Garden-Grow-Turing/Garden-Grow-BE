@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require 'spec_helper'
 require 'simplecov'
@@ -7,7 +9,7 @@ require 'vcr'
 VCR.configure do |c|
   c.allow_http_connections_when_no_cassette = true
   c.cassette_library_dir = 'spec/vcr'
-  c.filter_sensitive_data('rapidAPI>') { ENV['rapidAPI'] }
+  c.filter_sensitive_data('rapidAPI>') { ENV.fetch('rapidAPI', nil) }
   c.hook_into :webmock
   c.configure_rspec_metadata!
 end
@@ -17,7 +19,7 @@ require 'graphql_helper'
 ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'
 # Prevent database truncation if the environment is production
-abort("The Rails environment is running in production mode!") if Rails.env.production?
+abort('The Rails environment is running in production mode!') if Rails.env.production?
 require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
 
@@ -48,7 +50,7 @@ RSpec.configure do |config|
   config.include GraphqlHelper
   config.include FactoryBot::Syntax::Methods
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
-  config.fixture_path = "#{::Rails.root}/spec/fixtures"
+  config.fixture_path = "#{Rails.root}/spec/fixtures"
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
@@ -78,7 +80,6 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
 end
-
 
 Shoulda::Matchers.configure do |config|
   config.integrate do |with|

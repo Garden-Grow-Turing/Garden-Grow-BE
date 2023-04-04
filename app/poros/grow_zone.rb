@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class GrowZone
   attr_reader :zone
 

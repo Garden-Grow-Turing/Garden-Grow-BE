@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Types
   class QueryType < Types::BaseObject
     # Add `node(id: ID!) and `nodes(ids: [ID!]!)`
@@ -11,7 +13,7 @@ module Types
       description 'return details about a specific user'
       argument :user_id, String, required: true
     end
-    
+
     field :vegetables_by_zipcode, Types::ZipcodeResultType, null: false do
       description 'Returns a zone and basic vegetable details'
       argument :zipcode, String, required: true

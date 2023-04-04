@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Mutations
   class CreateVegetableUser < BaseMutation
     argument :user_id, String, required: true

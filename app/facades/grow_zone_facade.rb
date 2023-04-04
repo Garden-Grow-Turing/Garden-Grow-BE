@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class GrowZoneFacade
   def self.get_zone(zipcode)
     json = GrowZoneService.get_zone(zipcode)

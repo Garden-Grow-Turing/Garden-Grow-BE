@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'csv'
 
 namespace :csv_load do
@@ -38,6 +40,5 @@ namespace :csv_load do
   end
 
   desc 'load all csv files into db'
-  task all: %i[vegetables vegetable_zones users vegetable_users] do
-  end
+  task all: %i[vegetables vegetable_zones users vegetable_users]
 end
