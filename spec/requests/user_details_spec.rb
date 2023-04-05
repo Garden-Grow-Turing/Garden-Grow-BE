@@ -12,7 +12,7 @@ RSpec.describe 'vegetable_details', type: :request do
     user = query_user_details(user1.id, user1.grow_zone)
 
     expect(response).to be_successful
-    
+
     expect(user[:data][:userDetails][:id]).to be_a String
     expect(user[:data][:userDetails][:id]).to eq(user1.id.to_s)
     expect(user[:data][:userDetails][:name]).to be_a String
